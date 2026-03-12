@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Background gradient: deep indigo to black -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <!-- N stroke gradient: white to light gray -->
+    <linearGradient id="nGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cccccc"/>
+    </linearGradient>
+    <!-- Star gold gradient: bright center to deep gold -->
+    <radialGradient id="starGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7a1"/>
+      <stop offset="100%" stop-color="#e6b800"/>
+    </radialGradient>
+    <!-- Glow filter for star -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Drop shadow for N letterform -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="88" fill="url(#bgGrad)"/>
+  <!-- Subtle rim light -->
+  <rect width="512" height="512" rx="88" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2"/>
+
+  <!-- N letterform: path-based, no font dependency -->
+  <path d="M 120,400 L 120,112 L 392,400 L 392,112"
+        stroke="url(#nGrad)" stroke-width="68"
+        stroke-linecap="round" stroke-linejoin="round"
+        fill="none" filter="url(#dropShadow)"/>
+
+  <!-- Star accent: gold glow disc -->
+  <circle cx="406" cy="106" r="42" fill="url(#starGrad)" filter="url(#glow)" opacity="0.95"/>
+  <!-- Star: properly centered 5-point star at (406, 106), outer r=30, inner r=12 -->
+  <polygon points="406,76 413,96 435,97 417,110 424,130 406,118 388,130 395,110 378,97 399,96"
+           fill="white" filter="url(#glow)"/>
+</svg>
