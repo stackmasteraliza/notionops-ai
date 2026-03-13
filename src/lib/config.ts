@@ -17,6 +17,9 @@ export const config = {
   gemini: {
     apiKey: process.env.GEMINI_API_KEY || '',
   },
+  openrouter: {
+    apiKey: process.env.OPENROUTER_API_KEY || '',
+  },
   github: {
     token: process.env.GITHUB_TOKEN || '',
     owner: process.env.GITHUB_REPO_OWNER || '',

@@ -62,8 +62,8 @@ export const dashboardHTML = `<!DOCTYPE html>
       color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;
       transition:all .15s;text-decoration:none;border:1px solid transparent;
     }
-    .nav:hover{background:var(--s2);color:var(--text);}
-    .nav.active{background:var(--s2);color:var(--text);border-color:var(--border);}
+    .nav:hover{background:var(--s2);color:var(--text);border-color:var(--bh);transform:translateX(2px);}
+    .nav.active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-border);}
     .ndot{width:6px;height:6px;border-radius:50%;flex-shrink:0;opacity:.7;}
 
     .sb-bottom{margin-top:auto;padding:12px;border-top:1px solid var(--border);}
@@ -93,7 +93,7 @@ export const dashboardHTML = `<!DOCTYPE html>
       border:1px solid var(--border);padding:6px 14px;border-radius:var(--radius);
       display:flex;align-items:center;gap:5px;cursor:pointer;transition:all .15s;font-family:var(--mono);
     }
-    .tb-sync:hover{border-color:var(--bh);color:var(--text);background:var(--s2);}
+    .tb-sync:hover{border-color:var(--accent-border);color:var(--accent);background:var(--accent-soft);}
 
     .content{padding:20px 24px;flex:1;}
 
@@ -103,7 +103,7 @@ export const dashboardHTML = `<!DOCTYPE html>
       background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);
       padding:16px 18px;transition:all .15s;cursor:default;position:relative;overflow:hidden;
     }
-    .sc:hover{border-color:var(--bh);background:var(--s2);}
+    .sc:hover{border-color:var(--bh);background:var(--s2);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.25);}
     .sc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
     .sc-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
     .sc-icon{font-size:15px;opacity:.5;}
@@ -130,7 +130,7 @@ export const dashboardHTML = `<!DOCTYPE html>
       content:'';position:absolute;left:0;top:12px;bottom:12px;width:2px;
       background:var(--nc);border-radius:2px;opacity:.5;
     }
-    .ac:hover{border-color:var(--bh);background:var(--s2);}
+    .ac:hover{border-color:var(--bh);background:var(--s2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2);}
     .ac.running{border-color:rgba(var(--nr),.25);background:var(--s2);}
     .ac-row{display:flex;align-items:center;gap:12px;}
     .ac-icon{
@@ -140,12 +140,14 @@ export const dashboardHTML = `<!DOCTYPE html>
     .ac-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
     .ac-desc{font-size:11px;color:var(--muted);line-height:1.4;}
     .run-btn{
-      padding:6px 14px;border-radius:var(--radius);font-size:11px;font-weight:600;
-      color:var(--bg);border:none;cursor:pointer;transition:all .15s;flex-shrink:0;
-      background:var(--nc);font-family:var(--mono);letter-spacing:.04em;opacity:.85;
+      padding:7px 18px;border-radius:8px;font-size:11px;font-weight:700;
+      color:#fff;border:none;cursor:pointer;transition:all .2s ease;flex-shrink:0;
+      background:var(--accent);font-family:var(--mono);letter-spacing:.04em;
+      box-shadow:0 0 0 0 rgba(59,130,246,0),0 1px 2px rgba(0,0,0,.3);
     }
-    .run-btn:hover{opacity:1;}
-    .run-btn:disabled{opacity:.25;cursor:not-allowed;}
+    .run-btn:hover{background:#2563eb;box-shadow:0 0 12px rgba(59,130,246,.35),0 2px 8px rgba(0,0,0,.3);transform:translateY(-1px);}
+    .run-btn:active{transform:translateY(0);box-shadow:0 0 0 0 rgba(59,130,246,0),0 1px 2px rgba(0,0,0,.3);}
+    .run-btn:disabled{opacity:.25;cursor:not-allowed;transform:none;box-shadow:none;}
 
     .prog{margin-top:10px;display:none;}
     .prog.show{display:block;}
@@ -161,12 +163,14 @@ export const dashboardHTML = `<!DOCTYPE html>
 
     /* run-all button */
     .run-all{
-      width:100%;padding:10px;border-radius:var(--radius);border:1px solid var(--accent-border);cursor:pointer;
-      font-size:12px;font-weight:600;color:var(--accent);margin-top:10px;
-      background:var(--accent-soft);
-      letter-spacing:.04em;transition:all .15s;font-family:var(--mono);
+      width:100%;padding:12px;border-radius:var(--radius);border:1px solid var(--accent);cursor:pointer;
+      font-size:12px;font-weight:700;color:#fff;margin-top:10px;
+      background:linear-gradient(135deg,#3b82f6,#2563eb);
+      letter-spacing:.04em;transition:all .2s ease;font-family:var(--mono);
+      box-shadow:0 0 0 0 rgba(59,130,246,0),0 2px 4px rgba(0,0,0,.2);
     }
-    .run-all:hover{background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);}
+    .run-all:hover{background:linear-gradient(135deg,#2563eb,#1d4ed8);box-shadow:0 0 20px rgba(59,130,246,.3),0 4px 12px rgba(0,0,0,.3);transform:translateY(-1px);}
+    .run-all:active{transform:translateY(0);box-shadow:0 0 0 0 rgba(59,130,246,0),0 1px 2px rgba(0,0,0,.2);}
 
     /* right panel */
     .right{display:flex;flex-direction:column;gap:16px;}
@@ -236,10 +240,12 @@ export const dashboardHTML = `<!DOCTYPE html>
     .view-empty-title{font-size:14px;font-weight:600;color:var(--muted);}
     .view-empty-sub{font-size:12px;color:var(--dim);font-family:var(--mono);max-width:340px;line-height:1.6;}
     .ve-btn{
-      padding:8px 18px;border-radius:var(--radius);border:1px solid var(--accent-border);cursor:pointer;font-size:11px;font-weight:600;
-      color:var(--accent);background:var(--accent-soft);font-family:var(--mono);transition:all .15s;margin-top:4px;
+      padding:8px 18px;border-radius:8px;border:1px solid var(--accent);cursor:pointer;font-size:11px;font-weight:600;
+      color:#fff;background:var(--accent);font-family:var(--mono);transition:all .2s ease;margin-top:4px;
+      box-shadow:0 1px 2px rgba(0,0,0,.2);
     }
-    .ve-btn:hover{background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.3);}
+    .ve-btn:hover{background:#2563eb;box-shadow:0 0 12px rgba(59,130,246,.3),0 2px 8px rgba(0,0,0,.3);transform:translateY(-1px);}
+    .ve-btn:active{transform:translateY(0);}
 
     /* sprint view */
     .kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
@@ -748,7 +754,7 @@ async function loadView(name) {
 function renderTasksView(tasks) {
   var el = document.getElementById('tasks-view-body');
   if (!tasks.length) {
-    el.innerHTML = '<div class="view-empty"><div class="view-empty-icon">📋</div><div class="view-empty-title">No tasks loaded</div><div class="view-empty-sub">Run the Issue Triage Agent to fetch GitHub issues and create Notion tasks.</div><button class="ve-btn" onclick="runAgent(\'triage\');goTo(\'dashboard\')">Run Triage Agent</button></div>';
+    el.innerHTML = '<div class="view-empty"><div class="view-empty-icon">📋</div><div class="view-empty-title">No tasks loaded</div><div class="view-empty-sub">Run the Issue Triage Agent to fetch GitHub issues and create Notion tasks.</div><button class="ve-btn" onclick="runAgent(\\'triage\\');goTo(\\'dashboard\\')">Run Triage Agent</button></div>';
     return;
   }
   el.innerHTML = '<div class="tasks-grid">'+tasks.map(function(t) {
@@ -797,7 +803,7 @@ function renderSprintView(tasks) {
 function renderReportsView(count) {
   var el = document.getElementById('reports-view-body');
   if (!count) {
-    el.innerHTML = '<div class="view-empty"><div class="view-empty-icon">📊</div><div class="view-empty-title">No reports yet</div><div class="view-empty-sub">Run the Daily Report Agent to generate standup summaries from sprint metrics.</div><button class="ve-btn" onclick="runAgent(\'daily-report\');goTo(\'dashboard\')">Run Daily Report</button></div>';
+    el.innerHTML = '<div class="view-empty"><div class="view-empty-icon">📊</div><div class="view-empty-title">No reports yet</div><div class="view-empty-sub">Run the Daily Report Agent to generate standup summaries from sprint metrics.</div><button class="ve-btn" onclick="runAgent(\\'daily-report\\');goTo(\\'dashboard\\')">Run Daily Report</button></div>';
     return;
   }
   var today = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});

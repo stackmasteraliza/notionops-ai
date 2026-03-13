@@ -31,13 +31,12 @@ The dashboard provides real-time SSE streaming of agent activity, live stat card
 
 ## Video Demo
 
-<!-- REPLACE with your video link (Loom, YouTube, etc.) -->
-[VIDEO_LINK_HERE]
+{% embed https://youtu.be/_Ksiqn_yz4s %}
 
 ## Show us the code
 
 <!-- REPLACE with your GitHub repo -->
-{% github YOUR_USERNAME/YOUR_REPO %}
+{% github stackmasteraliza/notionops-ai %}
 
 ## How I Used Notion MCP
 
@@ -60,7 +59,7 @@ The key unlock: **agents write structured data into Notion, humans make decision
 ### Tech Stack
 
 - **Runtime**: Node.js + TypeScript
-- **AI**: Google Gemini 1.5 Flash
+- **AI**: Google Gemini 2.0 Flash via OpenRouter
 - **APIs**: Notion API, GitHub REST API (Octokit)
 - **Server**: Express.js with Server-Sent Events
 - **Frontend**: Vanilla HTML/CSS/JS (zero framework dependencies)

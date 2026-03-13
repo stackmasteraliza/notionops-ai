@@ -16,6 +16,10 @@ GitHub Issues/PRs  →  Gemini AI Agents  →  Human Review Gate  →  Notion (T
 
 One click. The pipeline runs itself.
 
+### Demo Video
+
+[![Watch Demo](screenshots/dashboard.png)](https://youtu.be/_Ksiqn_yz4s)
+
 ---
 
 ## Four AI Agents
@@ -84,7 +88,7 @@ One click. The pipeline runs itself.
 ## Tech Stack
 
 - **Runtime**: Node.js + TypeScript (strict)
-- **AI**: Google Gemini 1.5 Flash (structured JSON outputs, function calling)
+- **AI**: Google Gemini 2.0 Flash via OpenRouter (structured JSON outputs)
 - **Project management**: Notion API (`@notionhq/client`)
 - **Source control**: GitHub REST API (Octokit)
 - **Server**: Express.js with SSE for real-time streaming
@@ -96,8 +100,8 @@ One click. The pipeline runs itself.
 
 ### 1. Clone & install
 ```bash
-git clone <repo>
-cd challenge
+git clone https://github.com/stackmasteraliza/notionops-ai.git
+cd notionops-ai
 npm install
 ```
 
@@ -114,11 +118,11 @@ NOTION_APPROVALS_DB_ID=...
 NOTION_SPRINT_DB_ID=...
 NOTION_REPORTS_DB_ID=...
 
+OPENROUTER_API_KEY=sk-or-v1-...
+
 GITHUB_TOKEN=ghp_...
 GITHUB_REPO_OWNER=your-org
 GITHUB_REPO_NAME=your-repo
-
-GEMINI_API_KEY=...
 ```
 
 ### 3. Set up Notion databases
@@ -159,6 +163,21 @@ The real-time dashboard at `http://localhost:3000` gives you:
 - **Pipeline visualization** highlighting which stage is currently active
 - **Recent tasks** from Notion with priority-coded badges
 - **Run Full Pipeline** button that chains all four agents in sequence
+
+![Pipeline Running](screenshots/pipeline-running.png)
+![AI Agent Output](screenshots/ai-output.png)
+
+### Views
+
+| Tasks | Sprint Board | Reports |
+|-------|-------------|---------|
+| ![Tasks](screenshots/tasks-view.png) | ![Sprint](screenshots/sprint-board.png) | ![Reports](screenshots/reports-view.png) |
+
+### Notion Integration
+
+| Tasks Database | Sprint Board | Agent Reports |
+|---------------|-------------|---------------|
+| ![Notion Tasks](screenshots/notion-tasks.png) | ![Notion Sprint](screenshots/notion-sprint.png) | ![Notion Reports](screenshots/notion-reports.png) |
 
 ---
 

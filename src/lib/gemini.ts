@@ -1,62 +1,72 @@
-import { GoogleGenerativeAI, FunctionDeclaration, Tool } from '@google/generative-ai';
+import { OpenRouter } from '@openrouter/sdk';
 import { config } from './config';
 
-const genAI = new GoogleGenerativeAI(config.gemini.apiKey);
+const openrouter = new OpenRouter({
+  apiKey: config.openrouter.apiKey,
+});
 
 export async function runAgent(params: {
   systemPrompt: string;
   userMessage: string;
-  tools?: Tool[];
+  tools?: any[];
 }): Promise<string> {
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
-    systemInstruction: params.systemPrompt,
-    tools: params.tools,
+  const result = await openrouter.chat.send({
+    chatGenerationParams: {
+      model: 'google/gemini-2.0-flash-001',
+      messages: [
+        { role: 'system', content: params.systemPrompt },
+        { role: 'user', content: params.userMessage },
+      ],
+      stream: false,
+    },
   });
 
-  const result = await model.generateContent(params.userMessage);
-  const response = result.response;
-  return response.text();
+  return result.choices?.[0]?.message?.content || '';
 }
 
 export async function runAgentWithTools(params: {
   systemPrompt: string;
   userMessage: string;
-  tools: Tool[];
+  tools: any[];
   toolHandler: (name: string, args: any) => Promise<any>;
 }): Promise<string> {
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
-    systemInstruction: params.systemPrompt,
-    tools: params.tools,
-  });
+  const messages: any[] = [
+    { role: 'system', content: params.systemPrompt },
+    { role: 'user', content: params.userMessage },
+  ];
 
-  const chat = model.startChat();
-  let response = await chat.sendMessage(params.userMessage);
-
-  // Agentic loop: handle tool calls
   while (true) {
-    const candidate = response.response.candidates?.[0];
-    if (!candidate) break;
+    const result = await openrouter.chat.send({
+      chatGenerationParams: {
+        model: 'google/gemini-2.0-flash-001',
+        messages,
+        stream: false,
+      },
+    });
 
-    const toolCalls = candidate.content.parts.filter(p => p.functionCall);
-    if (toolCalls.length === 0) break;
+    const choice = result.choices?.[0];
+    if (!choice) break;
+
+    const msg = choice.message;
+    messages.push(msg);
+
+    if (!msg.toolCalls || msg.toolCalls.length === 0) {
+      return msg.content || '';
+    }
 
     const toolResults = await Promise.all(
-      toolCalls.map(async part => {
-        const call = part.functionCall!;
-        const result = await params.toolHandler(call.name, call.args);
+      msg.toolCalls.map(async (tc: any) => {
+        const fnResult = await params.toolHandler(tc.function.name, JSON.parse(tc.function.arguments));
         return {
-          functionResponse: {
-            name: call.name,
-            response: { result },
-          },
+          role: 'tool' as const,
+          toolCallId: tc.id,
+          content: JSON.stringify(fnResult),
         };
       })
     );
 
-    response = await chat.sendMessage(toolResults as any);
+    messages.push(...toolResults);
   }
 
-  return response.response.text();
+  return '';
 }
