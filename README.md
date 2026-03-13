@@ -1,6 +1,6 @@
 # NotionOps AI — Software Dev Pipeline That Runs Itself 🤖
 
-> **Notion MCP Challenge Submission** — An autonomous AI workflow engine that closes the loop between GitHub, Gemini AI, human judgment, and Notion — in real time.
+> **Notion MCP Challenge Submission** — An autonomous AI workflow engine that closes the loop between GitHub, OpenAI, human judgment, and Notion — in real time.
 
 ---
 
@@ -9,7 +9,7 @@
 Most dev teams have a painful daily ritual: check GitHub for new issues, triage them manually, review PRs, update Notion, plan the sprint, write the standup. **NotionOps AI eliminates every step of that with four specialized AI agents** and a real-time neon dashboard.
 
 ```
-GitHub Issues/PRs  →  Gemini AI Agents  →  Human Review Gate  →  Notion (Tasks · Sprint · Reports)
+GitHub Issues/PRs  →  OpenAI Agents  →  Human Review Gate  →  Notion (Tasks · Sprint · Reports)
         ↑                                           |
         └───────────── feedback loop ───────────────┘
 ```
@@ -66,13 +66,13 @@ One click. The pipeline runs itself.
     │  ┌──────────────┐ ┌────────────────┐  │
     │  │ IssueTriage  │ │   PRReview     │  │
     │  │  GitHub API  │ │  GitHub API    │  │
-    │  │  Gemini AI   │ │  Gemini AI     │  │
+    │  │  OpenAI      │ │  Gemini AI     │  │
     │  │  Notion API  │ │  Notion API    │  │
     │  └──────────────┘ └────────────────┘  │
     │  ┌──────────────┐ ┌────────────────┐  │
     │  │SprintPlanner │ │  DailyReport   │  │
     │  │  Notion API  │ │  Notion API    │  │
-    │  │  Gemini AI   │ │  Gemini AI     │  │
+    │  │  OpenAI      │ │  Gemini AI     │  │
     │  └──────────────┘ └────────────────┘  │
     └───────────────────────────────────────┘
              │
@@ -88,7 +88,7 @@ One click. The pipeline runs itself.
 ## Tech Stack
 
 - **Runtime**: Node.js + TypeScript (strict)
-- **AI**: Google Gemini 2.0 Flash via OpenRouter (structured JSON outputs)
+- **AI**: OpenAI via OpenRouter (structured JSON outputs)
 - **Project management**: Notion API (`@notionhq/client`)
 - **Source control**: GitHub REST API (Octokit)
 - **Server**: Express.js with SSE for real-time streaming

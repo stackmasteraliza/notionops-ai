@@ -8,13 +8,13 @@ tags: ["notionmcpchallenge", "notion", "ai", "typescript"]
 
 ## What I Built
 
-**NotionOps AI** is an autonomous workflow engine that connects GitHub, Google Gemini AI, and Notion into a single pipeline for software development teams.
+**NotionOps AI** is an autonomous workflow engine that connects GitHub, OpenAI, and Notion into a single pipeline for software development teams.
 
 It runs **4 specialized AI agents** that automate the daily dev lifecycle:
 
 | Agent | What it does |
 |-------|-------------|
-| **Issue Triage** | Fetches open GitHub issues, classifies priority & type with Gemini, creates Notion tasks |
+| **Issue Triage** | Fetches open GitHub issues, classifies priority & type with AI, creates Notion tasks |
 | **PR Review** | Reviews PR diffs, scores code quality 1-10, posts GitHub comments, creates Notion approval gates |
 | **Sprint Planner** | Selects top tasks from backlog, estimates story points with AI, populates Notion sprint board |
 | **Daily Report** | Aggregates sprint metrics, generates standup summary, saves report to Notion |
@@ -22,7 +22,7 @@ It runs **4 specialized AI agents** that automate the daily dev lifecycle:
 The agents chain together into a full pipeline:
 
 ```
-GitHub Issues/PRs → Gemini AI Agents → Human Review in Notion → Notion Databases
+GitHub Issues/PRs → OpenAI Agents → Human Review in Notion → Notion Databases
 ```
 
 The dashboard provides real-time SSE streaming of agent activity, live stat cards, a kanban sprint board, and a full pipeline visualization.
@@ -49,7 +49,7 @@ AI-triaged GitHub issues land here with structured metadata (priority, type, sta
 When the PR Review agent finds a problematic PR, it creates an approval page with its recommendation. Team members review and approve/reject directly in Notion. This is the human-in-the-loop gate — downstream agents respect these decisions.
 
 **3. Sprint Database**
-The Sprint Planner reads pending tasks from Notion, uses Gemini to estimate complexity and assign Fibonacci story points, then writes selected tasks back with Backlog/In Progress/Done status tracking. The dashboard renders this as a live kanban board.
+The Sprint Planner reads pending tasks from Notion, uses AI to estimate complexity and assign Fibonacci story points, then writes selected tasks back with Backlog/In Progress/Done status tracking. The dashboard renders this as a live kanban board.
 
 **4. Reports Database**
 Daily standup summaries are generated from sprint data and stored as rich-text report pages. This creates an automatic paper trail of team velocity and AI-generated insights over time.
@@ -59,7 +59,7 @@ The key unlock: **agents write structured data into Notion, humans make decision
 ### Tech Stack
 
 - **Runtime**: Node.js + TypeScript
-- **AI**: Google Gemini 2.0 Flash via OpenRouter
+- **AI**: OpenAI via OpenRouter (structured JSON outputs)
 - **APIs**: Notion API, GitHub REST API (Octokit)
 - **Server**: Express.js with Server-Sent Events
 - **Frontend**: Vanilla HTML/CSS/JS (zero framework dependencies)
