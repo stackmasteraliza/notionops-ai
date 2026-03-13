@@ -29,13 +29,33 @@ The dashboard provides real-time SSE streaming of agent activity, live stat card
 
 **Key design decision**: The PR Review agent creates **human-in-the-loop approval gates** in Notion when it finds low-quality PRs (score < 6). AI never takes destructive action without human sign-off.
 
+### Screenshots
+
+**Dashboard**
+![Dashboard](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y598k0bj55joeb7y84ho.png)
+
+**Pipeline Running**
+![Pipeline Running](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/llpw7wi0rqazw3fwq76u.png)
+
+**AI Agent Output**
+![AI Output](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/dzbuejofzeb8u01a3hwl.png)
+
+| Tasks View | Sprint Board | Reports |
+|------------|-------------|---------|
+| ![Tasks](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y718486i2ng6mfkox36o.png) | ![Sprint](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vbboeyy5yuue6ado38v0.png) | ![Reports](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tlio4cugl0r9btgr0f1j.png) |
+
+**Notion Integration**
+
+| Tasks Database | Sprint Board | Agent Reports |
+|---------------|-------------|---------------|
+| ![Notion Tasks](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7ng35ye51mm9fny9hyx5.png) | ![Notion Sprint](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oq3iq127a414as4g7nx4.png) | ![Notion Reports](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qo0v9gx7gob6tl329p5v.png) |
+
 ## Video Demo
 
 {% embed https://youtu.be/_Ksiqn_yz4s %}
 
 ## Show us the code
 
-<!-- REPLACE with your GitHub repo -->
 {% github stackmasteraliza/notionops-ai %}
 
 ## How I Used Notion MCP
@@ -63,3 +83,13 @@ The key unlock: **agents write structured data into Notion, humans make decision
 - **APIs**: Notion API, GitHub REST API (Octokit)
 - **Server**: Express.js with Server-Sent Events
 - **Frontend**: Vanilla HTML/CSS/JS (zero framework dependencies)
+
+---
+
+## About Me
+
+I'm **Aliza Ali** — a developer who loves building AI-powered tools that solve real workflow problems. If you liked this project, check out my other challenge submission:
+
+**[FixForward: One Command to Go from Broken Build to Ready-to-Merge PR](https://github.com/stackmasteraliza/fixforward)** — A CLI autopilot that detects failing tests, classifies bugs, generates fixes via GitHub Copilot CLI, and creates verified PRs. One command. Three ecosystems. Zero manual patching.
+
+Want to know more? Visit [alizaali.com](https://alizaali.com)
